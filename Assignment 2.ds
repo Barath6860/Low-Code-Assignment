@@ -1,0 +1,2040 @@
+/*
+ * Author       : barathraj.sp.2024.cse_raj102
+ * Generated on : 10-Nov-2026 09:37:39
+ * Version      : 1.0
+ */
+ application "Gym Membership Enrollment Management"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "America/Los_Angeles"
+ 	time format = "24-hr"
+
+ 	forms
+	{
+		form family_member
+		{
+			displayname = "Family Member"
+			success message = "Family Member Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			member
+			(
+				type = list	
+				displayname = "Member Profile"
+				values  = member_profile.ID
+    			displayformat = [member_id]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			family_member_name
+			(
+    			type = name
+				displayname = "Family Member Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+	     			 visibility = false
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			family_member_age
+			(
+				type = number
+				displayname = "Family Member Age"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			relationship
+			(
+    			type = text
+				displayname = "Relationship"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+			blueprint components
+			{
+				stages = {"Family Member Registration Initiated","Pending Validation","Family Member Active","Pending Correction","Registration Cancelled","Pending Review","Pending Deactivation","Family Member Inactive"}
+			}
+		}
+		form member_profile
+		{
+			displayname = "Member Profile"
+			success message = "Member Profile Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			member_id
+			(
+    			type = autonumber
+				displayname = "Member Id"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			first_name1
+			(
+    			type = name
+				displayname = "First Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+	     			 visibility = false
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			last_name1
+			(
+    			type = name
+				displayname = "Last Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+	     			 visibility = false
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			email
+			(
+    			type = email
+				displayname = "Email Address"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			phone_number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			address
+			(
+    			type = address
+				displayname = "Address"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_1
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_2
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+	     			 visibility = false
+     			) 
+     			district_city
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+	     			 visibility = false
+     			) 
+     			state_province
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+	     			 visibility = false
+     			) 
+     			postal_Code
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+	     			 visibility = false
+     			) 
+     			country
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+	     			 visibility = false
+     			) 
+     			latitude
+     			(
+	     			  type = latitude
+	     			  displayname = "Latitude"
+	     			 visibility = false
+     			) 
+     			longitude
+     			(
+	     			  type = longitude
+	     			  displayname = "Longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			member_photo
+			(
+    			type = text
+				displayname = "Member Photo"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			social_profile_url
+			(
+    			type = url
+				displayname = "Social Profile URL"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			requires_personal_trainer
+			(
+    			type = checkbox
+				displayname = "Requires Personal Trainer"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			current_bmi
+			(
+				type = decimal
+				displayname = "Current BMI"
+				maxchar = 16
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			medical_certificate
+			(
+    			type = text
+				displayname = "Medical Certificate"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			health_concern_voice
+			(
+    			type = text
+				displayname = "Health Concern Voice Note"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			fitness_goal_video
+			(
+    			type = text
+				displayname = "Fitness Goal Video Intro"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			digital_signature
+			(
+    			type = text
+				displayname = "Digital Signature"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			enrollment_submitted_on
+			(
+    			type = datetime
+				displayname = "Enrollment Submitted On"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			membership_fee_paid
+			(
+				displayname = "Membership Fee Paid"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			referral_discount_percent
+			(
+    			type = percentage
+				displayname = "Referral Discount Percent"
+				maxchar = 16
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			total_amount_payable
+			(
+				displayname = "Total Amount Payable"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			assigned_trainer
+			(
+				type = list	
+				displayname = "Assigned Trainer"
+				values  = trainers.ID
+    			displayformat = [trainer_id]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			member_access_qr
+			(
+    			type = text
+				displayname = "Member Access QR Code"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			gym_rules_display
+			(
+    			type = textarea
+				displayname = "Gym Rules Display"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+			blueprint components
+			{
+				stages = {"Enrollment Initiated","Profile Data Collection","Enrollment Draft","Document Verification","Trainer Assignment","Financial Calculation","Payment Processing","Membership Active","Payment Pending","Enrollment Cancelled","Onboarding Complete"}
+			}
+		}
+		form trainers
+		{
+			displayname = "Trainers"
+			success message = "Trainers Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			trainer_id
+			(
+    			type = autonumber
+				displayname = "Trainer Id"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			trainer_name
+			(
+    			type = name
+				displayname = "Trainer Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+	     			 visibility = false
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			specialization
+			(
+    			type = text
+				displayname = "Specialization"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	reports
+	{
+		list member_profile_Report
+		{
+			displayName = "All Member Profiles"
+			show all rows from member_profile    
+			(
+				member_id as "Member Id"
+				first_name1  as "First Name"
+				last_name1  as "Last Name"
+				email as "Email Address"
+				phone_number as "Phone Number"
+				address  as "Address"
+	 			(
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				member_photo as "Member Photo"
+				social_profile_url as "Social Profile URL"
+				requires_personal_trainer as "Requires Personal Trainer"
+				current_bmi as "Current BMI"
+				medical_certificate as "Medical Certificate"
+				health_concern_voice as "Health Concern Voice Note"
+				fitness_goal_video as "Fitness Goal Video Intro"
+				digital_signature as "Digital Signature"
+				enrollment_submitted_on as "Enrollment Submitted On"
+				membership_fee_paid as "Membership Fee Paid"
+				(
+					display = total,average,min,max	
+				)
+				referral_discount_percent as "Referral Discount Percent"
+				(
+					display = total,average,min,max	
+				)
+				total_amount_payable as "Total Amount Payable"
+				(
+					display = total,average,min,max	
+				)
+				assigned_trainer as "Assigned Trainer"
+				member_access_qr as "Member Access QR Code"
+				gym_rules_display as "Gym Rules Display"
+			)
+		}
+		list family_member_Report
+		{
+			displayName = "All Family Members"
+			show all rows from family_member    
+			(
+				member as "Member Profile"
+				family_member_name  as "Family Member Name"
+				family_member_age as "Family Member Age"
+				relationship as "Relationship"
+			)
+		}
+		list trainers_Report
+		{
+			displayName = "All Trainers"
+			show all rows from trainers    
+			(
+				trainer_id as "Trainer Id"
+				trainer_name  as "Trainer Name"
+				specialization as "Specialization"
+			)
+		}
+	}
+	pages
+	{
+		page DashBoard
+		{
+			displayname = "Dashboard"
+			Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel 1'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '10px'\n\tbgColor = '#D1CDB8'\n\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginBottom = '5px'\n\tcolor = '#000000'\n\tsize = '16px'\n\tfontFamily = 'RobotoSlab, arimo, sans-serif' \n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Total Amount Payable'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginRight = '0px' \n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#ADA579'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'business-calculator'\n\tsize = '20px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tcolor = '#ADA579'\n\tsize = '36px'\n\tbold = 'true' \n\tfontFamily = 'RobotoSlab, arimo, sans-serif' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n\n\n\tdisplayType = 'actual'\n\tdecimalPlaces = '2'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t  value = 'thisapp.member_profile.total_amount_payable.sum'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel 2'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '10px'\n\tbgColor = '#D6BDD9'\n\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginBottom = '5px'\n\tcolor = '#000000'\n\tsize = '16px'\n\tfontFamily = 'RobotoSlab, arimo, sans-serif' \n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Total Membership Fee Paid'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginRight = '0px' \n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#A079AD'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'business-payment'\n\tsize = '20px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tcolor = '#A079AD'\n\tsize = '36px'\n\tbold = 'true' \n\tfontFamily = 'RobotoSlab, arimo, sans-serif' \n\ttype = 'Form Data'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\tdisplayType = 'actual'\n\tdecimalPlaces = '2'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t  value = 'thisapp.member_profile.membership_fee_paid.sum'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel 3'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '10px'\n\tbgColor = '#BAD1B8'\n\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginBottom = '5px'\n\tcolor = '#000000'\n\tsize = '16px'\n\tfontFamily = 'RobotoSlab, arimo, sans-serif' \n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Average Current Bmi'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginRight = '0px' \n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#7DAD79'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'shopping-tag'\n\tsize = '20px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tcolor = '#7DAD79'\n\tsize = '36px'\n\tbold = 'true' \n\tfontFamily = 'RobotoSlab, arimo, sans-serif' \n\ttype = 'Form Data'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\tdisplayType = 'actual'\n\tdecimalPlaces = '2'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t  value = 'thisapp.member_profile.current_bmi.avg'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel 4'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '10px'\n\tbgColor = '#B6B6D4'\n\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginBottom = '5px'\n\tcolor = '#000000'\n\tsize = '16px'\n\tfontFamily = 'RobotoSlab, arimo, sans-serif' \n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Average Discount Percents'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginRight = '0px' \n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#7A78B3'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'shopping-discount'\n\tsize = '20px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tcolor = '#7A78B3'\n\tsize = '36px'\n\tbold = 'true' \n\tfontFamily = 'RobotoSlab, arimo, sans-serif' \n\ttype = 'Form Data'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\tdisplayType = 'actual'\n\tdecimalPlaces = '2'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t  value = 'thisapp.member_profile.referral_discount_percent.avg'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column>\n</row><row>\n\t<column\n   \t\t width='50%'\n   \t>\n\t<chart \n\telementName='Chart 1'\n\n\t\n\ttitle = 'Referral Discount Percent by Total Amount Payable'\n\t\n\t\ttitleSize = '16px'\n\ttype = 'Scatter'\n\txtitle = 'Referral Discount Percent'\n\tytitle = 'Total Amount Payable'\n\tbgColor = 'rgb(255, 255, 255)'\n\ttheme = '#CBC4BC'\n\tlegendPos = 'none'\n\theightType = 'auto'\n\theightValue = '300px'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'member_profile'\n\txfield = 'referral_discount_percent'\n\tyfields = 'value:total_amount_payable'\n\tgroupBy = 'member_id'\n\t\tDelugeCriteria = 'referral_discount_percent is not null'\n/>\n\n</column><column\n   \t\t width='50%'\n   \t>\n\t<chart \n\telementName='Chart 2'\n\n\t\n\ttitle = 'Health Concern Voice Note by Total Amount Payable'\n\t\n\t\ttitleSize = '16px'\n\ttype = 'Bar'\n\txtitle = 'Health Concern Voice Note'\n\tytitle = 'Total Amount Payable'\n\tbgColor = 'rgb(255, 255, 255)'\n\ttheme = '#b082ba'\n\tlegendPos = 'none'\n\theightType = 'auto'\n\theightValue = '300px'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'member_profile'\n\txfield = 'health_concern_voice'\n\tyfields = 'sum:total_amount_payable'\n\tgroupBy = 'member_id'\n\t\tDelugeCriteria = 'health_concern_voice is not null &amp;&amp; health_concern_voice != &quot;&quot;'\n/>\n\n</column>\n</row><row>\n\t<column\n   \t\t width='50%'\n   \t>\n\t<chart \n\telementName='Chart 3'\n\n\t\n\ttitle = 'Distribution by Health Concern Voice Note'\n\t\n\t\ttitleSize = '16px'\n\ttype = 'Bar'\n\txtitle = 'Health Concern Voice Note'\n\tytitle = 'Count of Health Concern Voice Note'\n\tbgColor = 'rgb(255, 255, 255)'\n\ttheme = '#88c2b7'\n\tlegendPos = 'none'\n\theightType = 'auto'\n\theightValue = '300px'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'member_profile'\n\txfield = 'health_concern_voice'\n\tyfields = 'count:health_concern_voice'\n\tgroupBy = 'member_id'\n\t\tDelugeCriteria = 'health_concern_voice is not null &amp;&amp; health_concern_voice != &quot;&quot;'\n/>\n\n</column><column\n   \t\t width='50%'\n   \t>\n\t<chart \n\telementName='Chart 4'\n\n\t\n\ttitle = 'Distribution by Relationship'\n\t\n\t\ttitleSize = '16px'\n\ttype = 'Bar'\n\txtitle = 'Relationship'\n\tytitle = 'Count of Relationship'\n\tbgColor = 'rgb(255, 255, 255)'\n\ttheme = '#ba8282'\n\tlegendPos = 'none'\n\theightType = 'auto'\n\theightValue = '300px'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'family_member'\n\txfield = 'relationship'\n\tyfields = 'count:relationship'\n\tgroupBy = 'member'\n\t\tDelugeCriteria = 'relationship is not null &amp;&amp; relationship != &quot;&quot;'\n/>\n\n</column>\n</row><row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<report \n\telementName='Report'\n\n\t\tappLinkName = 'thisapp'\n\t\tlinkName = 'member_profile_Report'\n\t\n\t\tiszreport = 'false'\n\t\t\t\t\tzc_Footer = 'false'\n\t\t\t\t\tzc_AddRec = 'false'\n\t\t\t\t\tzc_EditRec = 'false'\n\t\t\t\t\tzc_Print = 'false'\n\t\t\t\t\tzc_Export = 'false'\n\t\t\t\t\tzc_DelRec = 'false'\n\t\t\t\t\tzc_DuplRec = 'false'\n\t\t\t\t\tzc_Search = 'false'\n\t\t\t\t\tzc_EditBulkRec = 'false'\n\t\t\t\t\tzc_BulkDelete = 'false'\n\t\t\t\t\tzc_BulkDuplicate = 'false'\n\theightType = 'auto'\n\theightValue = '700'\n/>\n</column>\n</row>\n</layout>\n</zml>"
+		}
+	}
+
+
+
+
+		workflow
+		{
+		form
+		{
+			auto_calculate_membership_fee as "Auto-calculate Membership Fee"
+			{
+				type =  form
+				form = member_profile
+
+				record event = on add or edit
+
+				on user input of referral_discount_percent
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											// Fetch the member profile record to access membership fee and discount
+										memberProfile = member_profile[ID == input.ID];
+										// Get the membership fee payable amount
+										membershipFee = memberProfile.membership_fee_paid;
+										// Get the referral discount percentage
+										referralDiscountPercent = memberProfile.referral_discount_percent;
+										// Validate that membership fee is not null
+										if(membershipFee.isNull())
+										{
+											info "Membership fee is not set";
+											return;
+										}
+										// Validate that discount percentage is not null
+										if(referralDiscountPercent.isNull())
+										{
+											info "Referral discount percentage is not set";
+											return;
+										}
+										// Convert discount percentage to decimal (divide by 100)
+										discountDecimal = referralDiscountPercent.toDecimal() / 100;
+										// Calculate the discount amount
+										discountAmount = membershipFee * discountDecimal;
+										// Calculate the total amount payable after discount
+										totalAmountPayable = membershipFee - discountAmount;
+										// Update the total_amount_payable field in the member profile record
+										memberProfile.total_amount_payable=totalAmountPayable;
+										// The update is applied automatically once the field is assigned
+						)
+					}
+				}
+
+			}
+			validate_medical_certificate as "Validate Medical Certificate"
+			{
+				type =  form
+				form = member_profile
+
+				record event = on add or edit
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											// Check if medical_certificate field is empty
+										if(input.medical_certificate.isEmpty())
+										{
+											// Display error message to user
+											alert "Error: Medical certificate is required. Please upload a valid certificate before submitting.";
+											// Cancel the form submission
+											cancel submit;
+										}
+						)
+					}
+				}
+
+			}
+			send_welcome_email as "Send Welcome Email"
+			{
+				type =  form
+				form = member_profile
+
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											// Fetch the new member record to get email and QR code
+										memberRecord = member_profile[ID == input.ID];
+										// Validate that email and QR code exist
+										if(memberRecord.email.isNull() || memberRecord.member_access_qr.isNull())
+										{
+											info "Email or QR code is missing for member";
+										}
+										else
+										{
+											// Construct email message with QR code
+											emailSubject = "Welcome to Our Gym!";
+											emailMessage = "<p>Dear " + memberRecord.member_access_qr + ",</p>" + "<p>Welcome to our gym membership! Your QR code for access is attached.</p>" + "<p>Best regards,</p>" + "<p>Gym Management Team</p>";
+											// Send welcome email with QR code
+											sendmail
+											[
+												from :zoho.loginuserid
+												to :memberRecord.email
+												subject :emailSubject
+												message :emailMessage
+												content type :HTML
+											]
+										}
+						)
+					}
+				}
+
+			}
+		}
+
+		schedule
+		{
+			monthly_fee_reminder as "Monthly Fee Reminder"
+			{
+				type =  schedule
+					status = inactive
+				start = "2024-05-26 15:53:12"
+				time zone = "Asia/Kolkata"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						// Fetch members with unpaid fees (membership_fee_paid is 0 or null)
+										membersWithUnpaidFees = member_profile[membership_fee_paid == 0 || membership_fee_paid.isNull()];
+										// Check if there are any members with unpaid fees
+										if(membersWithUnpaidFees.count() > 0)
+										{
+											// Iterate through each member with unpaid fees
+											for each  member in membersWithUnpaidFees
+											{
+												// Validate email field
+												if(member.email.isNull())
+												{
+													continue;
+												}
+												// Get member's first name from composite field first_name1
+												memberFirstName = member.first_name1.first_name;
+												// Get member's last name from composite field last_name1
+												memberLastName = member.last_name1.last_name;
+												// Get total amount payable
+												totalAmount = member.total_amount_payable;
+												// Get membership fee paid
+												feePaid = member.membership_fee_paid;
+												// Calculate remaining amount
+												remainingAmount = totalAmount - feePaid;
+												// Prepare email subject
+												emailSubject = "Payment Reminder: Outstanding Membership Fees";
+												// Prepare email message
+												emailMessage = "Dear " + memberFirstName + " " + memberLastName + ",\n\n";
+												emailMessage = emailMessage.concat("This is a reminder that your membership fees are still outstanding.\n");
+												emailMessage = emailMessage.concat("Total Amount Payable: " + totalAmount.toString() + "\n");
+												emailMessage = emailMessage.concat("Amount Paid: " + feePaid.toString() + "\n");
+												emailMessage = emailMessage.concat("Remaining Amount Due: " + remainingAmount.toString() + "\n\n");
+												emailMessage = emailMessage.concat("Please complete your payment at your earliest convenience.\n\n");
+												emailMessage = emailMessage.concat("Thank you for your prompt attention to this matter.\n\n");
+												emailMessage = emailMessage.concat("Best regards,\nGym Management Team");
+												// Send email to the member
+												sendmail
+												[
+													from :zoho.loginuserid
+													to :member.email
+													subject :emailSubject
+													message :emailMessage
+													content type :Plain Text
+												]
+											}
+										}
+					)
+					}
+				}
+			}
+		}
+
+
+		blueprint
+		{
+    			family_addition_process as "Family Addition Process"
+    			{
+        			type = Blueprint
+        			form = family_member
+        			start
+        			{
+            			start stage = "Family Member Registration Initiated"
+        			}
+        			stages
+        			{
+           			"Family Member Registration Initiated"
+           			{
+           			}
+           			"Pending Validation"
+           			{
+           			}
+           			"Family Member Active"
+           			{
+           			}
+           			"Pending Correction"
+           			{
+           			}
+           			"Registration Cancelled"
+           			{
+           			}
+           			"Pending Review"
+           			{
+           			}
+           			"Pending Deactivation"
+           			{
+           			}
+           			"Family Member Inactive"
+           			{
+           			}
+        			}
+        			transitions
+        			{
+    				approve_after_review as "Approve After Review"
+    				{
+         				type = normal
+         				from stage = "Pending Review"
+         				to stage = "Family Member Active"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				approve_registration as "Approve Registration"
+    				{
+         				type = normal
+         				from stage = "Pending Validation"
+         				to stage = "Family Member Active"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				cancel_registration as "Cancel Registration"
+    				{
+         				type = normal
+         				from stage = "Pending Correction"
+         				to stage = "Registration Cancelled"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				confirm_deactivation as "Confirm Deactivation"
+    				{
+         				type = normal
+         				from stage = "Pending Deactivation"
+         				to stage = "Family Member Inactive"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				flag_review as "Flag for Manual Review"
+    				{
+         				type = normal
+         				from stage = "Family Member Active"
+         				to stage = "Pending Review"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				initiate_deactivation as "Initiate Deactivation"
+    				{
+         				type = normal
+         				from stage = "Family Member Active"
+         				to stage = "Pending Deactivation"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				reactivate_member as "Reactivate Member"
+    				{
+         				type = normal
+         				from stage = "Family Member Inactive"
+         				to stage = "Family Member Active"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				reject_registration as "Reject Registration"
+    				{
+         				type = normal
+         				from stage = "Pending Review"
+         				to stage = "Registration Cancelled"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				remove_record as "Permanently Remove Record"
+    				{
+         				type = normal
+         				from stage = "Family Member Inactive"
+         				to stage = "Registration Cancelled"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				request_corrections as "Request Corrections"
+    				{
+         				type = normal
+         				from stage = "Pending Validation"
+         				to stage = "Pending Correction"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				resubmit_data as "Resubmit Corrected Data"
+    				{
+         				type = normal
+         				from stage = "Pending Correction"
+         				to stage = "Pending Validation"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				revert_deactivation as "Revert Deactivation"
+    				{
+         				type = normal
+         				from stage = "Pending Deactivation"
+         				to stage = "Family Member Active"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				submit_registration as "Submit Registration"
+    				{
+         				type = normal
+         				from stage = "Family Member Registration Initiated"
+         				to stage = "Pending Validation"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+        			}
+    			}
+    			member_enrollment_process as "Member Enrollment Process"
+    			{
+        			type = Blueprint
+        			form = member_profile
+        			start
+        			{
+            			start stage = "Enrollment Initiated"
+        			}
+        			stages
+        			{
+           			"Enrollment Initiated"
+           			{
+           			}
+           			"Profile Data Collection"
+           			{
+           			}
+           			"Enrollment Draft"
+           			{
+           			}
+           			"Document Verification"
+           			{
+           			}
+           			"Trainer Assignment"
+           			{
+           			}
+           			"Financial Calculation"
+           			{
+           			}
+           			"Payment Processing"
+           			{
+           			}
+           			"Membership Active"
+           			{
+           			}
+           			"Payment Pending"
+           			{
+           			}
+           			"Enrollment Cancelled"
+           			{
+           			}
+           			"Onboarding Complete"
+           			{
+           			}
+        			}
+        			transitions
+        			{
+    				activate_membership as "Activate Membership"
+    				{
+         				type = normal
+         				from stage = "Membership Active"
+         				to stage = "Onboarding Complete"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				adjust_trainer as "Adjust Trainer Selection"
+    				{
+         				type = normal
+         				from stage = "Financial Calculation"
+         				to stage = "Trainer Assignment"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				assign_trainer as "Assign Trainer and Calculate Fees"
+    				{
+         				type = normal
+         				from stage = "Trainer Assignment"
+         				to stage = "Financial Calculation"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				calculate_fees as "Calculate Total Payable"
+    				{
+         				type = normal
+         				from stage = "Financial Calculation"
+         				to stage = "Payment Processing"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				cancel_enrollment as "Cancel Enrollment"
+    				{
+         				type = normal
+         				from stage = "Payment Processing"
+         				to stage = "Enrollment Cancelled"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				cancel_pending as "Cancel Pending Enrollment"
+    				{
+         				type = normal
+         				from stage = "Payment Pending"
+         				to stage = "Enrollment Cancelled"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				confirm_payment as "Confirm Payment"
+    				{
+         				type = normal
+         				from stage = "Payment Processing"
+         				to stage = "Membership Active"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				discard_draft as "Discard Draft"
+    				{
+         				type = normal
+         				from stage = "Enrollment Draft"
+         				to stage = "Enrollment Cancelled"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				edit_profile as "Edit Profile"
+    				{
+         				type = normal
+         				from stage = "Profile Data Collection"
+         				to stage = "Enrollment Initiated"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				mark_pending as "Mark as Pending"
+    				{
+         				type = normal
+         				from stage = "Payment Processing"
+         				to stage = "Payment Pending"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				reassign_trainer as "Reassign Trainer"
+    				{
+         				type = normal
+         				from stage = "Trainer Assignment"
+         				to stage = "Document Verification"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				request_payment_update as "Request Payment Update"
+    				{
+         				type = normal
+         				from stage = "Membership Active"
+         				to stage = "Payment Processing"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				request_resubmission as "Request Document Resubmission"
+    				{
+         				type = normal
+         				from stage = "Document Verification"
+         				to stage = "Profile Data Collection"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				resume_enrollment as "Resume Enrollment"
+    				{
+         				type = normal
+         				from stage = "Enrollment Draft"
+         				to stage = "Enrollment Initiated"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				retry_payment as "Retry Payment"
+    				{
+         				type = normal
+         				from stage = "Payment Pending"
+         				to stage = "Payment Processing"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				save_draft as "Save as Draft"
+    				{
+         				type = normal
+         				from stage = "Enrollment Initiated"
+         				to stage = "Enrollment Draft"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				submit_documents as "Submit Documents"
+    				{
+         				type = normal
+         				from stage = "Profile Data Collection"
+         				to stage = "Document Verification"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				submit_profile as "Submit Member Profile"
+    				{
+         				type = normal
+         				from stage = "Enrollment Initiated"
+         				to stage = "Profile Data Collection"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				verify_documents as "Verify and Approve Documents"
+    				{
+         				type = normal
+         				from stage = "Document Verification"
+         				to stage = "Trainer Assignment"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+        			}
+    			}
+		}
+
+
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Membership Administrator"
+			{
+				name = "Membership Administrator"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Process new member enrollments and verify submitted medical certificates \n"
+				ModulePermissions
+				{
+					trainers
+					{
+						enabled= Viewall,Modifyall,Export 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							trainers_Report={"View","Edit","Delete"}
+						}
+					}
+					member_profile
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							member_profile_Report={"View","Edit","Delete"}
+						}
+					}
+					family_member
+					{
+						enabled= Viewall,Modifyall,Export 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							family_member_Report={"View","Edit","Delete"}
+						}
+					}
+				}
+			}
+			"Trainer Coordinator"
+			{
+				name = "Trainer Coordinator"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Assign personal trainers to members based on specialization and availability \n"
+				ModulePermissions
+				{
+					trainers
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							trainers_Report={"View","Edit","Delete"}
+						}
+					}
+					member_profile
+					{
+						enabled= Viewall,Modifyall,Export 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							member_profile_Report={"View","Edit","Delete"}
+						}
+					}
+					family_member
+					{
+						enabled= Viewall,Modifyall,Export 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							family_member_Report={"View","Edit","Delete"}
+						}
+					}
+				}
+			}
+			"Data Compliance Officer"
+			{
+				name = "Data Compliance Officer"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Ensure all member data including voice notes and videos are securely stored \n"
+				ModulePermissions
+				{
+					trainers
+					{
+						enabled= Viewall,Export 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							trainers_Report={"View"}
+						}
+					}
+					member_profile
+					{
+						enabled= Viewall,Export 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							member_profile_Report={"View"}
+						}
+					}
+					family_member
+					{
+						enabled= Viewall,Export 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							family_member_Report={"View"}
+						}
+					}
+				}
+			}
+			"Developer"
+			{
+				name = "Developer"
+				type = Developer
+				permissions = {Chat:false, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Developer Profile\n"
+			}
+			"Billing Specialist"
+			{
+				name = "Billing Specialist"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Track membership fee payments and update payment status records \n"
+				ModulePermissions
+				{
+					trainers
+					{
+						enabled= Viewall,Export 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							trainers_Report={"View"}
+						}
+					}
+					member_profile
+					{
+						enabled= Viewall,Modifyall,Export 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							member_profile_Report={"View","Edit","Delete"}
+						}
+					}
+					family_member
+					{
+						enabled= Viewall,Modifyall,Export 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							family_member_Report={"View","Edit","Delete"}
+						}
+					}
+				}
+			}
+			"Family Member"
+			{
+				name = "Family Member"
+				type = Customer_Portal
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Register as a dependent under a primary member's account \n"
+				ModulePermissions
+				{
+					trainers
+					{
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							trainers_Report={"View"}
+						}
+					}
+					member_profile
+					{
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							member_profile_Report={"View"}
+						}
+					}
+					family_member
+					{
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							family_member_Report={"View"}
+						}
+					}
+				}
+			}
+			"Gym Member"
+			{
+				name = "Gym Member"
+				type = Customer_Portal
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Submit personal profile details, medical certificates, and fitness goal videos \n"
+				ModulePermissions
+				{
+					trainers
+					{
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							trainers_Report={"View"}
+						}
+					}
+					member_profile
+					{
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							member_profile_Report={"View"}
+						}
+					}
+					family_member
+					{
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							family_member_Report={"View"}
+						}
+					}
+				}
+			}
+			"Customer"
+			{
+				name = "Customer"
+				type = Customer_Portal
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This is the default profile having only add and view permission.\n"
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+
+	web
+	{
+		forms
+		{
+			form family_member
+			{
+				label placement = left
+			}
+			form member_profile
+			{
+				label placement = left
+			}
+			form trainers
+			{
+				label placement = left
+			}
+		}
+		reports
+		{
+			report member_profile_Report
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								member_id as "Member Id"
+								first_name1 as "First Name"
+								last_name1 as "Last Name"
+								email as "Email Address"
+								phone_number as "Phone Number"
+								address as "Address"
+								member_photo as "Member Photo"
+								social_profile_url as "Social Profile URL"
+								requires_personal_trainer as "Requires Personal Trainer"
+								current_bmi as "Current BMI"
+								medical_certificate as "Medical Certificate"
+								health_concern_voice as "Health Concern Voice Note"
+								fitness_goal_video as "Fitness Goal Video Intro"
+								digital_signature as "Digital Signature"
+								enrollment_submitted_on as "Enrollment Submitted On"
+								membership_fee_paid as "Membership Fee Paid"
+								referral_discount_percent as "Referral Discount Percent"
+								total_amount_payable as "Total Amount Payable"
+								assigned_trainer as "Assigned Trainer"
+								member_access_qr as "Member Access QR Code"
+								gym_rules_display as "Gym Rules Display"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+								Add 
+								Import 
+								Export 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						datablock1
+						(
+		     				title = "Overview"
+							fields
+							(
+								member_id as "Member Id"
+								first_name1 as "First Name"
+								last_name1 as "Last Name"
+								email as "Email Address"
+								phone_number as "Phone Number"
+								address as "Address"
+								member_photo as "Member Photo"
+								social_profile_url as "Social Profile URL"
+								requires_personal_trainer as "Requires Personal Trainer"
+								current_bmi as "Current BMI"
+								medical_certificate as "Medical Certificate"
+								health_concern_voice as "Health Concern Voice Note"
+								fitness_goal_video as "Fitness Goal Video Intro"
+								digital_signature as "Digital Signature"
+								enrollment_submitted_on as "Enrollment Submitted On"
+								membership_fee_paid as "Membership Fee Paid"
+								referral_discount_percent as "Referral Discount Percent"
+								total_amount_payable as "Total Amount Payable"
+								assigned_trainer as "Assigned Trainer"
+								member_access_qr as "Member Access QR Code"
+								gym_rules_display as "Gym Rules Display"
+							)
+						)
+						datablock2
+						(
+		     				title = "Assigned Trainer"
+		     				related field = assigned_trainer
+							fields
+							(
+								trainer_id as "Trainer Id"
+								trainer_name as "Trainer Name"
+								specialization as "Specialization"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+							)
+						)
+				)
+			}
+			report family_member_Report
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								member as "Member Profile"
+								family_member_name as "Family Member Name"
+								family_member_age as "Family Member Age"
+								relationship as "Relationship"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+								Add 
+								Import 
+								Export 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						datablock1
+						(
+		     				title = "Overview"
+							fields
+							(
+								member as "Member Profile"
+								family_member_name as "Family Member Name"
+								family_member_age as "Family Member Age"
+								relationship as "Relationship"
+							)
+						)
+						datablock2
+						(
+		     				title = "Member Profile"
+		     				related field = member
+							fields
+							(
+								member_id as "Member Id"
+								first_name1 as "First Name"
+								last_name1 as "Last Name"
+								email as "Email Address"
+								phone_number as "Phone Number"
+								address as "Address"
+								member_photo as "Member Photo"
+								social_profile_url as "Social Profile URL"
+								requires_personal_trainer as "Requires Personal Trainer"
+								current_bmi as "Current BMI"
+								medical_certificate as "Medical Certificate"
+								health_concern_voice as "Health Concern Voice Note"
+								fitness_goal_video as "Fitness Goal Video Intro"
+								digital_signature as "Digital Signature"
+								enrollment_submitted_on as "Enrollment Submitted On"
+								membership_fee_paid as "Membership Fee Paid"
+								referral_discount_percent as "Referral Discount Percent"
+								total_amount_payable as "Total Amount Payable"
+								assigned_trainer as "Assigned Trainer"
+								member_access_qr as "Member Access QR Code"
+								gym_rules_display as "Gym Rules Display"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+							)
+						)
+				)
+			}
+			report trainers_Report
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								trainer_id as "Trainer Id"
+								trainer_name as "Trainer Name"
+								specialization as "Specialization"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+								Add 
+								Import 
+								Export 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						datablock1
+						(
+		     				title = "Overview"
+							fields
+							(
+								trainer_id as "Trainer Id"
+								trainer_name as "Trainer Name"
+								specialization as "Specialization"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+							)
+						)
+				)
+			}
+		}
+		menu
+		{
+			space Space
+			{
+				displayname = "Space"
+				icon = "objects-spaceship"
+
+				section Section_1
+				{
+					displayname = "Dashboard"
+					icon = "ui-1-dashboard-half"
+					page DashBoard
+					{
+						icon = "ui-1-dashboard-half"
+					}
+				}
+				section Section_2
+				{
+					displayname = "Member Profiles"
+					icon = "shopping-receipt-list-43"
+					form  member_profile
+					{
+						icon = "ui-1-bold-add"
+					}
+					report member_profile_Report
+					{
+						icon = "travel-world"
+					}
+				}
+				section Section_3
+				{
+					displayname = "Family Members"
+					icon = "users-2-family"
+					form  family_member
+					{
+						icon = "ui-1-bold-add"
+					}
+					report family_member_Report
+					{
+						icon = "travel-world"
+					}
+				}
+				section Section_4
+				{
+					displayname = "Trainers"
+					icon = "tech-desktop"
+					form  trainers
+					{
+						icon = "ui-1-bold-add"
+					}
+					report trainers_Report
+					{
+						icon = "travel-world"
+					}
+				}
+				section ZC_App_Preferences
+				{
+					displayname = "App Preferences"
+					icon = "design-app"
+					systemcomponent
+					{
+						type = localization
+						displayname = "Language Selection"
+						icon = "education-language"
+					}
+					systemcomponent
+					{
+						type = connection
+						displayname = "Integrations"
+						icon = "tech-2-connection"
+					}
+				}
+				section ZC_Approvals
+				{
+					displayname = "Approvals"
+					icon = "ui-2-hourglass"
+					systemcomponent
+					{
+						type = approval
+						approval status = pending
+						displayname = "Pending Tasks"
+						icon = "ui-2-hourglass"
+					}
+					systemcomponent
+					{
+						type = approval
+						approval status = completed
+						displayname = "Completed Tasks"
+						icon = "design-todo"
+					}
+				}
+				section SharedAnalytics_Section
+				{
+					type = shared_user_report_section
+					displayname = "Reports"
+					icon = "business-chart-bar-33"
+				}
+			}
+			preference
+			{
+				icon
+				{
+					style = solid
+					show = {space,section,component}
+				}
+			}
+		}
+		customize
+		{
+			new theme = 6
+			font = "rubik"
+			color options
+			{
+				color = "7"
+			}
+			logo
+			{
+				preference = "none"
+				placement = "left"
+			}
+		}
+	}
+	phone
+	{
+		customize
+		{
+			layout = twocolumn
+			font = "default"
+			style = "1"
+			color options
+			{
+				color = chryslerpurple
+			}
+			logo
+			{
+				preference = "none"
+			}
+		}
+	}
+	tablet
+	{
+		customize
+		{
+			layout = slidingpane
+			font = "default"
+			style = "1"
+			color options
+			{
+				color = darkgrey
+			}
+			logo
+			{
+				preference = "none"
+			}
+		}
+	}
+	translation
+{
+{"Language_Settings":{"LANGAGUE_WITH_LOGIN":"browser"}}
+}
+}
